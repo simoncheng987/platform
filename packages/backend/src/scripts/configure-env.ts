@@ -83,10 +83,12 @@ function validateKeys(filePath) {
 /**
  * Verfiy the current environment files for development and production
  */
-function configureEnvironmentFiles() {
-  const isDevEnvironmentValidated = validateEnvironmentFile(PATH_DEV);
-  const isProdEnvironmentValidated = validateEnvironmentFile(PATH_PROD);
-  return isProdEnvironmentValidated && isDevEnvironmentValidated;
+function configureEnvironmentFiles(nodeEnvironment) {
+  const isEnvironmentValidated =
+    nodeEnvironment === 'production'
+      ? validateEnvironmentFile(PATH_PROD)
+      : validateEnvironmentFile(PATH_DEV);
+  return isEnvironmentValidated;
 }
 
 export default configureEnvironmentFiles;
